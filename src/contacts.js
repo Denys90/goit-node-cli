@@ -1,8 +1,8 @@
-const fs = require("node:fs").promises;
+const fs = require("node:fs/promises");
 const path = require("path");
 
 //   Розкоментуй і запиши значення
-const contactsPath = path.join(__dirname, "./db/contacts");
+const contactsPath = path.join(__dirname, "./db/contacts.json");
 
 async function listContacts() {
   try {

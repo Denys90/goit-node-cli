@@ -1,5 +1,6 @@
 const { listContacts, getContactById, removeContact, addContact } = require("./contacts");
-const { program } = require("./contacts");
+// const { program } = require("./contacts");
+const { program } = require("commander");
 
 program
   .option("-a, --action <type>", "choose action")
