@@ -1,5 +1,6 @@
 const fs = require("node:fs/promises");
 const path = require("path");
+const crypto = require("crypto");
 
 //   Розкоментуй і запиши значення
 const contactsPath = path.join(__dirname, "./db/contacts.json");
@@ -47,6 +48,15 @@ async function addContact(name, email, phone) {
   try {
     const data = await fs.readFile(contactsPath, "utf-8");
     const contacts = JSON.parse(data);
+
+    const existingContact = contacts.find(
+      (contact) => contact.email === email || contact.phone === phone
+    );
+    if (existingContact) {
+      console.log("This contact already exists in the list.");
+      return null;
+    }
+
     const newContact = { id: crypto.randomUUID(), name, email, phone };
     const updatedContacts = [...contacts, newContact];
 
